@@ -1,0 +1,18 @@
+.header {
+  background: red;
+  width: 1500px;
+  height: 100px;
+  margin: 20px 15px 0;
+  z-index: 99;
+
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header > * {
+  width: max-content;
+  align-self: stretch;
+}

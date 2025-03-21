@@ -12,8 +12,8 @@ function TestimonialItem({
   text,
 }: TestimonialItemProps) {
   return (
-    <div className="bg-[var(--primary-opacity-fade)] p-7.5 rounded-[50px] tracking-[-0.4px] w-full relative">
-      <span className="text-[128px] font-extralight p-2.5 absolute tracking-[-2.56px] right-7.5 top-[-21px] bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
+    <div className="bg-primary-shade-10 p-7.5 rounded-[50px] tracking-[-0.4px] w-full relative">
+      <span className="text-[128px] font-extralight p-2.5 absolute tracking-[-2.56px] right-7.5 top-[-21px] bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
         “
       </span>
       <h3 className="py-1.25 text-[18px] font-semibold tracking-[-0.18px]">

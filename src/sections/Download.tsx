@@ -9,17 +9,22 @@ function Download() {
   return (
     <section
       id="download"
-      className="section max-w-400 py-12.5 px-50 flex-row bg-[var(--text-color)] text-white rounded-[50px]"
+      className="section max-w-400 py-12.5 px-10 flex-row justify-center bg-text-color text-white rounded-[50px] max-md:flex-col max-md:gap-2.5"
     >
-      <div className="text-left">
-        <h2 className="text-[64px] font-semibold tracking-[-2.56px] py-2.5 text-[var(--secondary-color)]">
+      <div className="hide text-left max-w-[705px] px-2.5  min-w-1/2 max-md:text-center max-md:flex-center max-md:flex-col max-md:gap-2.5">
+        <h2 className="text-[clamp(20px,7.907vw,64px)] text-secondary-color font-semibold py-2.5 tracking-[-2.56px] max-m:tracking-[-1.36px]">
           {title}
         </h2>
         <h3 className="secondary-heading py-2.5">{subtitle}</h3>
         <p className="py-2.5">{text}</p>
         <DownloadItem />
       </div>
-      <img src={mockupImage} alt="" />
+      <img
+        src={mockupImage}
+        alt=""
+        className="show max-w-1/2 max-md:max-w-89"
+      />
+      <DownloadItem />
     </section>
   );
 }

@@ -29,10 +29,17 @@ export interface MoreFeature {
   image?: string;
 }
 
+// export interface FeaturesFlow {
+//   icon?: string;
+//   title: string;
+//   text: string;
+// }
+
 export interface FeaturesProp {
   mainFeatures: string[];
   featuresText: string[];
   moreFeatures: MoreFeature[];
+  featuresIllustration: string[];
 }
 
 // SECURITY
@@ -127,17 +134,19 @@ export const footerData: FooterData = {
     {
       category: "Quick links",
       links: [
-        { label: "About Us", url: "/about" },
-        { label: "Careers", url: "/careers" },
-        { label: "Blog", url: "/blog" },
+        { label: "Home", url: "/" },
+        { label: "How it Works", url: "works" },
+        { label: "Features", url: "features" },
+        { label: "Download", url: "download" },
+        { label: "FAQs", url: "faqs" },
+        { label: "Testimonial", url: "testimonials" },
       ],
     },
     {
       category: "Contact",
       links: [
-        { label: "Help Center", url: "/help" },
-        { label: "Contact Us", url: "/contact" },
-        { label: "Privacy Policy", url: "/privacy" },
+        { label: "About Us", url: "/about-us" },
+        { label: "Contact Us", url: "/contact-us" },
       ],
     },
   ],
@@ -156,18 +165,23 @@ export const featuresData: FeaturesProp = {
     "SafulPay offers a variety of exciting tools to make managing your money even easier. From instant QR code payments to sending personalized gift cards in seconds, we've got you covered. Need to request money? Our easy request feature allows you to get funds from anyone, anywhere. Plus, with secure virtual cards, you can shop online with confidence. Discover all the ways SafulPay enhances your financial experience!",
     "SafulPay simplifies how you manage and move your money, offering a secure, fast, and user-friendly platform for all your financial needs. From handling transactions and paying bills to managing virtual cards and requesting money, SafulPay is designed to keep you in control while ensuring your data and funds are protected. Our commitment to transparency, security, and convenience makes SafulPay the ideal choice for modern financial management.",
   ],
+  featuresIllustration: [
+    "/create-wallet-illustration.png",
+    "/send-illustration.png",
+    "./payment-illustration.png",
+  ],
   moreFeatures: [
     {
       title: "Send personalized gift cards in seconds",
-      image: "/featuresMockup1.png",
+      image: "/mockup-features1.png",
     },
     {
       title: "Secure online shopping with virtual cards",
-      image: "/featuresMockup2.png",
+      image: "/mockup-features2.png",
     },
     {
       title: "Instant payment with a simple scan",
-      image: "/featuresMockup3.png",
+      image: "/mockup-features3.png",
     },
   ],
 };

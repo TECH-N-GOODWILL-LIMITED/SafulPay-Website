@@ -7,20 +7,20 @@ function Hero() {
   const { company } = companyData;
 
   return (
-    <section className="section gap-10 min-h-[80vh]">
-      <div className="py-2.5 flex flex-col gap-2.5 text-white items-center mt-50">
-        <h1 className="max-w-275 p-2.5 text-[100px] font-bold tracking-[-3px] leading-none">
+    <section className="section gap-10 min-h-[80vh] border border-red-500">
+      <div className="flex-center flex-col gap-2.5 max-m:gap-7.5 mt-50 py-2.5 text-white">
+        <h1 className="max-w-275 p-2.5">
           {company.slogan}
-          <span className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
             {company.name}
           </span>
         </h1>
-        <p className="secondary-heading font-normal p-2.5 max-w-250">
+        <p className="text-[clamp(16px,3.721vw,30px)] font-normal tracking-[-0.9px] max-m:tracking-normal p-2.5 max-w-250 max-m:max-w-80">
           {company.description}
         </p>
         <DownloadItem />
       </div>
-      <div className="max-w-111">
+      <div className="max-w-[min(63.49vw,444px)]">
         <img src={mockUpImage} alt="" />
       </div>
     </section>

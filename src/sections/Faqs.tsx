@@ -16,12 +16,12 @@ function Faqs() {
       <img
         src={bgIcon}
         alt=""
-        className="absolute left-[-370px] top-[10%] max-w-147.5 opacity-80"
+        className=" max-w-147.5 max-md:max-w-120 absolute left-[-370px] top-[10%] opacity-80"
       />
-      <h2 className="py-2.5 text-[64px] font-semibold tracking-[-2.56px] text-[var(--primary-color)] max-w-275">
+      <h2 className="max-w-275 py-2.5 text-primary-color text-[clamp(20px,7.907vw,64px)] font-semibold tracking-[-2.56px] max-m:tracking-[-1.36px]">
         {title}
       </h2>
-      <p className="py-2.5 text-[20px] font-normal max-w-175">{intro}</p>
+      <p className="max-w-175 py-2.5 px-10 small-text font-normal">{intro}</p>
       {faqs.map((faq, index) => (
         <FaqItem
           key={index}

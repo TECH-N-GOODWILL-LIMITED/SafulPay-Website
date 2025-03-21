@@ -1,7 +1,8 @@
 // COMPANY
 export interface Company {
   name: string;
-  logo: string;
+  greenLogo: string;
+  lemonLogo: string;
   slogan: string;
   description: string;
 }
@@ -74,7 +75,8 @@ export interface SafulPayData {
 export const companyData: SafulPayData = {
   company: {
     name: "SafulPay",
-    logo: "/safulpay-icon.svg",
+    greenLogo: "/safulpay-icon-green.svg",
+    lemonLogo: "/safulpay-icon-lemon.svg",
     slogan: "Finance Just Got Better With ",
     description:
       "Our mission is to provide seamless and secure mobile money solutions, empowering users to manage their finances with ease.",
@@ -123,6 +125,16 @@ export const companyData: SafulPayData = {
   },
   socials: [
     {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/company/safulpay",
+      icon: "/icon-linkedin.svg",
+    },
+    {
+      name: "Twitter",
+      url: "https://www.twitter.com/safulpay",
+      icon: "/icon-twitter.svg",
+    },
+    {
       name: "Facebook",
       url: "https://www.facebook.com/safulpay",
       icon: "/icon-facebook.svg",
@@ -131,11 +143,6 @@ export const companyData: SafulPayData = {
       name: "Whatsapp",
       url: "https://www.whatsapp.com/safulpay",
       icon: "/icon-whatsapp.svg",
-    },
-    {
-      name: "Twitter",
-      url: "https://www.twitter.com/safulpay",
-      icon: "/icon-twitter.svg",
     },
     {
       name: "TikTok",
@@ -147,11 +154,6 @@ export const companyData: SafulPayData = {
       url: "https://www.instagram.com/safulpay",
       icon: "/icon-instagram.svg",
     },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/company/safulpay",
-      icon: "/icon-linkedin.svg",
-    },
   ],
   downloads: {
     title: `Download SafulPay Today`,
@@ -159,11 +161,11 @@ export const companyData: SafulPayData = {
     text: "Get started with SafulPay by downloading the app on your device. Manage your money, make payments, and access all the powerful features from anywhere, anytime. Experience the convenience and security SafulPay brings to your financial life—download now!",
     appStore: {
       link: "https://www.apple.com/app-store/safulpay",
-      image: "/apple-icon.svg",
+      image: "/download-appstore-icon.svg",
     },
     playStore: {
       link: "https://play.google.com/store/apps/details?id=safulpay",
-      image: "/google-icon.svg",
+      image: "/download-playstore-icon.svg",
     },
   },
   aboutus: {

@@ -80,24 +80,25 @@ function NavBar() {
   // };
 
   return (
-    <header className="fixed inset-x-0 z-99 max-w-[var(--container-width)] bg-[rgba(27,27,27,0.5)] backdrop-blur-[10px] mx-auto p-5 my-2 rounded-[20px] flex justify-between items-center small-text font-semibold text-white">
-      <Link to="/" className="flex gap-2.5 items-center">
-        <img
-          src={company.logo}
-          alt={company.name}
-          className="w-15 px-3 py-1.25"
-        />
-        <p className="secondary-heading  bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
-          {company.name}
-        </p>
-      </Link>
-      <nav>
-        {navLinks.map((navLink, index) => (
-          <a href={navLink.url} className="px-5" key={index}>
-            {navLink.label}
-          </a>
-        ))}
-        {/* {navLinks.map((navLink) => (
+    <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-99">
+      <div className="mx-2.5 max-w-container-width w-full bg-[rgba(27,27,27,0.5)] backdrop-blur-[10px] p-5 my-2 rounded-[20px] flex justify-between items-center small-text font-semibold text-white">
+        <Link to="/" className="flex gap-2.5 items-center">
+          <img
+            src={company.greenLogo}
+            alt={company.name}
+            className="w-15 px-3 py-1.25"
+          />
+          <p className="secondary-heading bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
+            {company.name}
+          </p>
+        </Link>
+        <nav>
+          {navLinks.map((navLink, index) => (
+            <a href={navLink.url} className="px-5" key={index}>
+              {navLink.label}
+            </a>
+          ))}
+          {/* {navLinks.map((navLink) => (
           <NavLink
             key={navLink.label}
             to={navLink.url}
@@ -110,13 +111,14 @@ function NavBar() {
             {navLink.label}
           </NavLink>
         ))} */}
-      </nav>
-      <a
-        href="#download"
-        className="px-7.5 py-4.25 rounded-[10px] bg-[var(--secondary-color)] text-[var(--primary-color)] "
-      >
-        Download App
-      </a>
+        </nav>
+        <a
+          href="#download"
+          className="px-7.5 py-4.25 rounded-[10px] bg-secondary-color text-primary-color"
+        >
+          Download App
+        </a>
+      </div>
     </header>
   );
 }

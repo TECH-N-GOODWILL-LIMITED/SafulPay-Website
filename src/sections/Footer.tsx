@@ -18,7 +18,11 @@ function Footer() {
         <div className="grid grid-cols-[1fr_auto] justify-between items-center">
           <div className="max-w-175 flex flex-col gap-2.5 items-start z-20">
             <div className="flex gap-2.5 items-center">
-              <img src={company.logo} alt="" className="w-30 px-6.5 py-2.5" />
+              <img
+                src={company.greenLogo}
+                alt=""
+                className="w-30 px-6.5 py-2.5"
+              />
               <span className="text-[64px] font-semibold tracking-[-1.92px] bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
                 {company.name}
               </span>

@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-function AboutUs() {
-  return <section className="section bg-white h-screen">ABOUT US PAGE</section>;
-=======
 import Team from "../sections/Team";
 import About from "../sections/About";
 import Download from "../sections/Download";
@@ -16,7 +12,6 @@ function AboutUs() {
       </main>
     </>
   );
->>>>>>> Stashed changes
 }
 
 export default AboutUs;

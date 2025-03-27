@@ -1,9 +1,9 @@
 import { featuresData } from "../data/appContent";
 import bgIcon from "../assets/bg-logo-illustration.svg";
 import illustrationImage from "../assets/illustration-image.png";
-
+import KeyFeatures from "../components/KeyFeatures";
 function Features() {
-  const { mainFeatures, featuresText, featuresIllustration } = featuresData;
+  const { featuresText, featuresIllustration } = featuresData;
 
   return (
     <section id="features" className="section gap-12.5 max-md:gap-2.5">
@@ -14,26 +14,7 @@ function Features() {
       />
       <div className="flex flex-col gap-5 py-2.5 max-w-250 max-sm:gap-2.5">
         <h2 className="p-2.5 primary-heading">Features You Will Get</h2>
-        <div className="secondary-heading p-2.5 flex-center gap-2.5 max-m:tracking-[-0.4px]">
-          {mainFeatures.map((feature, index) => (
-            <span
-              className={`${
-                index === 0
-                  ? `text-primary-color`
-                  : `${
-                      index === 1 ? "text-error-color" : "text-secondary-color"
-                    }`
-              }`}
-              key={index}
-            >
-              {feature}
-              {index !== mainFeatures.length - 1 && (
-                <span className="text-text-color"> - </span>
-              )}
-            </span>
-          ))}
-        </div>
-
+        <KeyFeatures />
         <p className="p-2.5 mx-12.5 text-[clamp(12px,3.256vw,24px)]!">
           {featuresText[0]}
         </p>

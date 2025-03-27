@@ -20,13 +20,13 @@ function FaqItem({ question, answer, isOpen, toggleFAQ }: FaqItemProps) {
       <span className="small-text font-semibold py-2.5 px-7.5">{question}</span>
       <button
         onClick={toggleFAQ}
-        className="rounded-[50px] bg-[#c3f02c33] p-5"
+        className="rounded-[50px] bg-[#c3f02c33] p-5 max-md:p-3"
         ref={parent}
       >
         <img
           src={isOpen ? collapseIcon : expandIcon}
           alt=""
-          className="w-5 h-5"
+          className="w-5 h-5 max-md:w-3"
         />
       </button>
       {isOpen && (

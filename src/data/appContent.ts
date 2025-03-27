@@ -1,9 +1,10 @@
 const currentYear = new Date().getFullYear();
 
 // NAV
-export interface NavLink {
+interface NavLink {
   label: string;
   url: string;
+  type: "route" | "scroll";
 }
 
 // FOOTER
@@ -36,7 +37,7 @@ export interface MoreFeature {
 // }
 
 export interface FeaturesProp {
-  mainFeatures: string[];
+  keyFeatures: string[];
   featuresText: string[];
   moreFeatures: MoreFeature[];
   featuresIllustration: string[];
@@ -117,13 +118,12 @@ export interface HowItWorks {
 
 // NAVBAR
 export const navLinks: NavLink[] = [
-  { label: "Close App", url: "/" },
-  { label: "Features", url: "features" },
-  { label: "How it Works", url: "works" },
-  { label: "Testimonial", url: "testimonials" },
-  { label: "FAQs", url: "faqs" },
-  { label: "Contact Us", url: "/contact-us" },
-  { label: "About Us", url: "/about-us" },
+  { label: "Features", url: "features", type: "scroll" },
+  { label: "How it Works", url: "works", type: "scroll" },
+  { label: "Testimonial", url: "testimonials", type: "scroll" },
+  { label: "FAQs", url: "faqs", type: "scroll" },
+  { label: "Contact Us", url: "/contact-us", type: "route" },
+  { label: "About Us", url: "/about-us", type: "route" },
 ];
 
 // FOOTER
@@ -159,7 +159,7 @@ export const footerData: FooterData = {
 
 // FEATURES
 export const featuresData: FeaturesProp = {
-  mainFeatures: ["User-friendly", "Security", "Privacy"],
+  keyFeatures: ["User-friendly", "Security", "Privacy"],
   featuresText: [
     "SafulPay provides a fast and secure way to manage your money, ensuring your transactions are always smooth. You can easily handle multiple wallets, pay bills, and top up services with just a few taps. Our transparent fees keep you informed, so there are no surprises. Whether you're sending money locally or across borders, SafulPay makes it simple and reliable. Plus, our 24/7 support is always available to assist whenever you need help.",
     "SafulPay offers a variety of exciting tools to make managing your money even easier. From instant QR code payments to sending personalized gift cards in seconds, we've got you covered. Need to request money? Our easy request feature allows you to get funds from anyone, anywhere. Plus, with secure virtual cards, you can shop online with confidence. Discover all the ways SafulPay enhances your financial experience!",

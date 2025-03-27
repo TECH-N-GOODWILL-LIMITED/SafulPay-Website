@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // PR TEMPLATE
 
 
@@ -976,4 +977,561 @@ export default function NavBar() {
       </div>
     </header>
   );
+=======
+// ADMIN PRICING
+"use client";
+
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import CurrentPlanCard from "../current-plan/current-plan";
+
+export interface Plan {
+  title: string;
+  price: {
+    monthly: number;
+    annually: number;
+  };
+  features: string[];
+  urls?: {
+    monthly: string;
+    annually: string;
+  };
+  popular?: boolean;
+}
+
+function AdminPricing() {
+  const { data: session } = useSession();
+  const user = session?.user;
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annually">(
+    "monthly"
+  );
+  const [activePlan, setActivePlan] = useState<string | null>(
+    user?.plan || "Basic"
+  );
+  const [showPlans, setShowPlans] = useState(false);
+
+  const plans: Plan[] = [
+    {
+      title: "Free",
+      price: {
+        monthly: 0,
+        annually: 0,
+      },
+      features: [
+        "Up to 20 votes",
+        "Basic Poll Creation",
+        "Email Support",
+        "Basic result analytics",
+        "❌ Basic reporting",
+        "❌ 1 poll at a time",
+        "❌ Custom branding",
+        "❌ CSV export",
+      ],
+    },
+    {
+      title: "Basic",
+      price: {
+        monthly: 10,
+        annually: 108,
+      },
+      features: [
+        "Up to 100 votes",
+        "Basic Poll Creation",
+        "Email Support",
+        "Basic result analytics",
+        "Basic reporting",
+        "CSV export of results",
+        "❌ Advanced Analytics",
+        "❌ Advanced integrations",
+      ],
+      urls: {
+        monthly: "https://buy.stripe.com/eVa2c70FygOM6ac00z",
+        annually: "https://buy.stripe.com/bIY2c7ag8dCA1TW6oY",
+      },
+      popular: true,
+    },
+    {
+      title: "Business",
+      price: {
+        monthly: 25,
+        annually: 270,
+      },
+      features: [
+        "Unlimited votes",
+        "Unlimited polls",
+        "Standard question types",
+        "Basic result analytics",
+        "Advanced analytics dashboard",
+        "Custom integrations",
+        "White-label solution",
+        "24/7 premium support",
+      ],
+      urls: {
+        monthly: "https://buy.stripe.com/dR6g2Xag82XWgOQ6oZ",
+        annually: "https://buy.stripe.com/dR603Zag88iggOQ9Bc",
+      },
+    },
+  ];
+
+  const cycleLabels = {
+    monthly: "/Month",
+    annually: "/Year",
+  };
+
+  const handlePlanClick = (planTitle: string) => {
+    setActivePlan(planTitle);
+  };
+
+  const handlePaymentClick = (url: string) => {
+    const transactionId = crypto.randomUUID();
+    localStorage.setItem("tnxId", transactionId);
+
+    window.open(url, "_blank");
+  };
+
+  const matchedPlan = plans.find(
+    (plan) => plan.title.toUpperCase() === user?.plan?.toUpperCase()
+  );
+
+  const handleChangePlanClick = () => {
+    setShowPlans(true);
+  };
+
+  const shouldShowPlans = user?.plan === "FREE" || showPlans;
+
+  return (
+    <main>
+      {shouldShowPlans ? (
+        <section className="mx-auto flex max-w-6xl flex-col">
+          <div className="font-afacad flex flex-col gap-1 leading-6 font-normal">
+            <h2 className="text-2xl">Plans & billing</h2>
+            <p className="text-lg leading-5 text-[#80828D]">
+              Manage your plan & billing history.
+            </p>
+          </div>
+          <div className="mx-auto mt-8 flex max-w-fit flex-wrap justify-center gap-3 rounded-md border border-[#C3D0D9] p-1">
+            {Object.entries(cycleLabels).map(([cycle]) => (
+              <button
+                key={cycle}
+                onClick={() => setBillingCycle(cycle as typeof billingCycle)}
+                className={`cursor-pointer rounded-md px-4 py-2 text-[12px] font-bold transition-colors md:text-[16px] ${
+                  billingCycle === cycle
+                    ? "bg-[#FD7702] text-white"
+                    : "text-[#111827] hover:bg-gray-200"
+                }`}
+              >
+                {cycle.charAt(0).toUpperCase() + cycle.slice(1)}
+              </button>
+            ))}
+          </div>
+          <div className="font-outfit mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {plans.map((plan) => (
+              <div
+                key={plan.title}
+                onClick={() => handlePlanClick(plan.title)}
+                className={`relative flex flex-col justify-between rounded-lg border-[0.5px] bg-white p-6 md:p-8 ${
+                  activePlan === plan.title
+                    ? "border border-[#16395F]"
+                    : plan.popular
+                    ? "border border-[#F16A00]"
+                    : "border-[#D2D5DA]"
+                }`}
+              >
+                <div>
+                  <div className="flex flex-wrap items-start justify-between gap-x-4">
+                    <h3 className="text-xl font-normal text-gray-900">
+                      {plan.title} plan
+                    </h3>
+                  </div>
+                  <p className="mt-4 text-start text-3xl font-medium lg:text-[48px]">
+                    ${plan.price[billingCycle]}&nbsp;
+                    <span className="text-[16px] font-normal">
+                      {cycleLabels[billingCycle]}
+                    </span>
+                  </p>
+                  <ul className="mt-6 space-y-2 text-left text-lg text-gray-600">
+                    <p>Features Include</p>
+                    {plan.features.map((feature, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        {feature.startsWith("❌") ? (
+                          <>
+                            <span className="text-[#DB2525]">✕</span>
+                            <span className="">{feature.slice(2)}</span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="text-[#19A45B]">✓</span>
+                            <span>{feature}</span>
+                          </>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <Button
+                  onClick={() =>
+                    plan.urls && handlePaymentClick(plan.urls[billingCycle])
+                  }
+                  disabled={matchedPlan?.title === plan.title}
+                  className={`mt-8 w-full cursor-pointer self-end justify-self-end rounded-md py-3 font-semibold transition-colors hover:bg-[#16395F] hover:text-[#F8FAFB]`}
+                >
+                  {matchedPlan?.title === plan.title
+                    ? "Current Plan"
+                    : `Upgrade to ${plan.title}`}
+                </Button>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <CurrentPlanCard
+          planName={user?.plan?.toLowerCase()}
+          price={
+            user?.billing_interval === "monthly"
+              ? matchedPlan?.price.monthly
+              : matchedPlan?.price.annually
+          }
+          billingFrequency={user?.billing_interval}
+          onChangePlan={handleChangePlanClick}
+        />
+      )}
+    </main>
+  );
+}
+
+export default AdminPricing;
+
+// PAYMENT SUCCESS
+("use client");
+
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { subscriptionService } from "@/actions/subscription.action";
+import {
+  BillingInterval,
+  SubscriptionPaymentRequest,
+  SubscriptionPlan,
+} from "@/lib/types/subscription.types";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, Lock } from "lucide-react";
+
+const VALID_PLANS = ["BASIC", "BUSINESS"];
+const VALID_TYPES = ["monthly", "yearly"];
+
+const planPrices = {
+  basic: {
+    monthly: 10,
+    yearly: 108,
+  },
+  business: {
+    monthly: 25,
+    yearly: 270,
+  },
+};
+
+function getFormattedDate(
+  date: Date,
+  locale: string = "en-US",
+  options: Intl.DateTimeFormatOptions = {}
+): string {
+  return date.toLocaleDateString(locale, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    ...options,
+  });
+}
+
+function getPaymentAndExpiryDates(billingInterval: string) {
+  const currentDate = new Date();
+  const paymentDate = getFormattedDate(currentDate);
+
+  const expirationDate = new Date(currentDate);
+  if (billingInterval === "monthly") {
+    expirationDate.setUTCDate(currentDate.getUTCDate() + 30);
+  } else if (billingInterval === "yearly") {
+    expirationDate.setUTCDate(currentDate.getUTCDate() + 365);
+  }
+
+  const expiryDate = getFormattedDate(expirationDate);
+
+  return {
+    paymentDate,
+    expiryDate,
+  };
+}
+
+function getPlanAmount(plan: string, type: string): number | null {
+  const normalizedPlan = plan.toLowerCase();
+  const normalizedType = type.toLowerCase();
+
+  if (
+    normalizedPlan in planPrices &&
+    normalizedType in planPrices[normalizedPlan as keyof typeof planPrices]
+  ) {
+    return planPrices[normalizedPlan as keyof typeof planPrices][
+      normalizedType as keyof (typeof planPrices)["basic" | "business"]
+    ];
+  }
+
+  return null;
+}
+
+function PaymentSuccess() {
+  const [isValidTransaction, setIsValidTransaction] = useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<string | null>(null);
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const plan = searchParams.get("plan") || "";
+  const type = searchParams.get("type") || "";
+  const { data: session } = useSession();
+  const userSubId = session?.user.id;
+
+  const userSubPlan = plan.toUpperCase() as SubscriptionPlan;
+  const userSubType = type.toLowerCase() as BillingInterval;
+
+  const { paymentDate, expiryDate } = getPaymentAndExpiryDates(type);
+  const planAmount = getPlanAmount(plan, type);
+
+  useEffect(() => {
+    const validateTransaction = () => {
+      const txId = localStorage.getItem("txId");
+
+      setTransactionError(null);
+
+      if (!txId || txId.length < 5) {
+        setTransactionError("Missing or invalid transaction ID");
+        setIsValidTransaction(false);
+        return;
+      }
+
+      if (!plan || !type) {
+        setTransactionError("Missing plan or billing type");
+        setIsValidTransaction(false);
+        return;
+      }
+
+      if (!VALID_PLANS.includes(userSubPlan)) {
+        setTransactionError(`Invalid plan: ${plan}`);
+        setIsValidTransaction(false);
+        return;
+      }
+
+      if (!VALID_TYPES.includes(userSubType)) {
+        setTransactionError(`Invalid billing type: ${type}`);
+        setIsValidTransaction(false);
+        return;
+      }
+
+      setIsValidTransaction(true);
+
+      const timer: NodeJS.Timeout = setTimeout(() => {
+        localStorage.removeItem("txId");
+        console.log("txId cleared from localStorage");
+      }, 300000);
+
+      return () => clearTimeout(timer);
+    };
+
+    validateTransaction();
+  }, [plan, type, userSubPlan, userSubType]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    if (isValidTransaction && userSubId) {
+      const updateSubscription = async () => {
+        try {
+          const subscriptionData: SubscriptionPaymentRequest = {
+            plan: userSubPlan,
+            billing_interval: userSubType,
+          };
+
+          const response = await subscriptionService.updateUserSubscription(
+            userSubId,
+            subscriptionData
+          );
+          console.log("Subscription updated:", response);
+        } catch (error) {
+          console.error("Error updating subscription:", error);
+          setTransactionError(
+            "Failed to update subscription. Please contact support."
+          );
+        } finally {
+          timer = setTimeout(() => {
+            localStorage.removeItem("txId");
+          }, 60000);
+          console.log(session, "payment update");
+        }
+      };
+
+      updateSubscription();
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [session, isValidTransaction, userSubId, userSubPlan, userSubType]);
+
+  return (
+    <div>
+      <div className="font-outfit flex items-center justify-center md:p-4">
+        <div className="w-full max-w-xl">
+          {!isValidTransaction ? (
+            <>
+              <h2 className="mb-4 text-center text-xl font-medium text-[#062A4F] md:text-3xl">
+                Invalid Transaction
+              </h2>
+              {transactionError && (
+                <p className="mb-4 text-center text-red-500">
+                  {transactionError}
+                </p>
+              )}
+            </>
+          ) : (
+            <h2 className="mb-4 text-center text-xl font-medium text-[#062A4F] md:text-3xl">
+              Payment for {type.charAt(0).toUpperCase() + type.slice(1)}&nbsp;
+              {plan.charAt(0).toUpperCase() + plan.slice(1)} Package
+            </h2>
+          )}
+          <Card className="rounded-lg border border-[#CDCED7] shadow-none md:p-6">
+            <CardContent className="space-y-4 p-2 md:p-6">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">
+                  Payment {isValidTransaction ? "confirmed" : "rejected"}
+                </h3>
+                <span className="flex items-center text-sm text-[#B9BBC6]">
+                  <Lock size={16} className="mr-1" /> Secure server
+                </span>
+              </div>
+              <div className="space-y-2 text-sm text-[#8B8D98]">
+                {!isValidTransaction && (
+                  <p>
+                    (Kindly contact support if you &quot;believe&quot; this was
+                    an error)
+                  </p>
+                )}
+                <p className="capitalize">
+                  <strong className="text-[#1C2024]">Plan - </strong>
+                  {plan}
+                </p>
+                <p>
+                  <strong className="text-[#1C2024]">Price - </strong>$
+                  {planAmount}/&nbsp;
+                  {type === "monthly" ? "month" : "year"}
+                </p>
+                <p>
+                  <strong className="text-[#1C2024]">Billing Cycle - </strong>
+                  Auto-renews every {type === "monthly" ? "30" : "365"} days
+                  (Cancel any time)
+                </p>
+                <p>
+                  <strong className="text-[#1C2024]">Start date - </strong>
+                  {isValidTransaction
+                    ? paymentDate
+                    : "Make a successful payment first"}
+                </p>
+                <p>
+                  <strong className="text-[#1C2024]">
+                    Next billing date -
+                  </strong>
+                  {isValidTransaction ? (
+                    <span>
+                      &nbsp;{expiryDate}&nbsp;(
+                      {type === "monthly" ? "30" : "365"}
+                      days from purchase date)
+                    </span>
+                  ) : (
+                    "Today"
+                  )}
+                </p>
+              </div>
+              <div className="mt-20 flex items-center justify-between">
+                <Button
+                  onClick={() => router.push("/")}
+                  variant={"link"}
+                  size={"sm"}
+                  className="flex cursor-pointer items-center p-0 text-sm text-[#7FB4F1]"
+                >
+                  <ArrowLeft size={16} className="mr-1" /> Back to Home
+                </Button>
+                <Button
+                  onClick={() => router.push("/elections")}
+                  className="font-afacad cursor-pointer rounded-md bg-[#002347] px-3 py-2 text-sm text-[#FCFCFD] md:px-6"
+                  size={"sm"}
+                >
+                  Proceed to Create Election
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PaymentSuccess;
+
+// SUB ACTION
+// export { updateUserSubscription };
+
+import { axiosPatch } from "@/lib/api/apiClientAuth";
+import {
+  SubscriptionPaymentRequest,
+  SubscriptionPaymentResponse,
+} from "@/lib/types/subscription.types";
+
+async function updateUserSubscription(
+  userId: string,
+  userSub: SubscriptionPaymentRequest
+): Promise<SubscriptionPaymentResponse> {
+  try {
+    const response = await axiosPatch<SubscriptionPaymentResponse>(
+      `auth/${userId}/subscription-payment`,
+      userSub
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating user subscription:", error);
+    throw error;
+  }
+}
+
+export const subscriptionService = {
+  updateUserSubscription,
+};
+
+// SUB TYPES\
+export type SubscriptionPlan = "FREE" | "BASIC" | "BUSINESS";
+export type BillingInterval = "monthly" | "yearly";
+
+export interface SubscriptionPaymentRequest {
+  plan: SubscriptionPlan;
+  billing_interval: BillingInterval;
+}
+
+export interface SubscriptionPaymentResponse {
+  message: string;
+  data: {
+    id: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at: null | string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    is_verified: boolean;
+    google_id: null | string;
+    profile_picture: null | string;
+    billing_Interval: string;
+    plan: SubscriptionPlan;
+    billing_interval: BillingInterval;
+  };
+>>>>>>> Stashed changes
 }

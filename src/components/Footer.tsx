@@ -1,16 +1,16 @@
 import { companyData } from "../data/companyData";
 import { featuresData, footerData } from "../data/appContent";
-import DownloadItem from "../components/DownloadItem";
+import DownloadItem from "./DownloadItem";
 import bgIcon from "../assets/bg-logo-illustration.svg";
 
-function Footer2() {
+function Footer() {
   const { company, socials, regulated } = companyData;
   const { featuresText } = featuresData;
   const { footerLinks, copyright, otherLinks } = footerData;
 
   return (
-    <footer className="rounded-t-[50px] bg-[#1B1B1B] text-white text-start w-full">
-      <div className="grid grid-cols-1 justify-between items-center max-w-300.5 mx-auto px-2.5 pt-25 pb-25 gap-x-10 md:pt-37.5 md:grid-cols-[1fr_auto] max-md:place-items-center max-md:text-center max-md:gap-y-10">
+    <footer className="rounded-t-[50px] max-md:rounded-t-[30px] bg-[#1B1B1B] text-white text-start w-full">
+      <div className="grid grid-cols-1 justify-between items-center max-w-300.5 mx-auto px-2.5 pt-25 pb-12.5 gap-x-10 md:pb-25 md:pt-37.5 md:grid-cols-[1fr_auto] max-md:place-items-center max-md:text-center max-md:gap-y-10">
         <div className="max-w-175 flex flex-col gap-2.5 items-start max-md:items-center z-20 mx-5 max-md:mx-10">
           <div className="flex gap-2.5 items-center">
             <img
@@ -51,7 +51,7 @@ function Footer2() {
         </div>
         <div className="flex justify-between items-center col-span-full mx-5 max-md:mx-10 max-md:flex-col-reverse">
           <div className="flex flex-col w-fit gap-2.5 p-2.5">
-            <p className="p-2.5 title-text">Connect With Us</p>
+            <p className="p-2.5 title-text text-white">Connect With Us</p>
             <div className="flex items-center gap-1.25">
               {socials.map((social, index) => (
                 <a
@@ -85,7 +85,7 @@ function Footer2() {
             {copyright}
             <span className="text-secondary-color">{company.name}</span>
           </p>
-          <div className="">
+          <div>
             {otherLinks.map((link) => (
               <a href={link.url} className="py-2.5 px-7.5 font-semibold">
                 {link.label}
@@ -98,4 +98,4 @@ function Footer2() {
   );
 }
 
-export default Footer2;
+export default Footer;

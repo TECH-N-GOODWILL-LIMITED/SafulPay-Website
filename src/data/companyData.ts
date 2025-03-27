@@ -39,7 +39,7 @@ export interface DownloadLinks {
 
 export interface About {
   title: string;
-  text: string;
+  intro: string[];
 }
 
 export interface Member {
@@ -56,8 +56,7 @@ export interface Member {
 
 export interface Team {
   title: string;
-  subtitle: string;
-  text: string;
+  intro: string;
   members: Member[];
 }
 
@@ -169,17 +168,20 @@ export const companyData: SafulPayData = {
     },
   },
   aboutus: {
-    title: "Empowering Seamless Digital Payments",
-    text: "SafulPay is a cutting-edge payment solution designed to make financial transactions fast, secure, and hassle-free. Our platform allows users to send and receive money, pay bills, and shop online with ease. We are committed to enhancing financial inclusion by providing a user-friendly and reliable digital payment experience.",
+    title: "Empowering Financial Inclusion with Innovation",
+    intro: [
+      "At SafulPay, we believe in transforming the way people manage, move, and interact with their money. Our mission is to make financial services secure, accessible, and user-friendly for everyone, no matter where they are. With cutting-edge technology, we’ve built a platform that simplifies digital payments, virtual cards, gift cards, and more, ensuring every transaction is seamless and safe.",
+      "Our team of experts—visionaries, designers, and engineers—are committed to innovation. By blending transparency with top-tier security, including encryption and fraud detection, SafulPay delivers a financial experience you can trust. Whether you're sending money, paying bills, or securing gift cards, we put you in control of your financial world.",
+    ],
   },
   team: {
-    title: "Meet Our Team",
-    subtitle: "Meet Our Team",
-    text: "Our team is comprised of experienced professionals who are passionate about delivering innovative solutions that meet.",
+    title: "Innovators Driving Financial Transformation",
+    intro:
+      "At SafulPay, our team is composed of dedicated professionals with deep expertise in their respective fields. From visionary leadership to technical brilliance, every member brings a wealth of experience and passion to the table. Our CEO, COO, and Founder drive strategic growth and operational excellence, while our DevOps, UI/UX, and Full Stack Developer ensure seamless, secure, and user-friendly experiences. Together, we are united by a common goal: to revolutionize the way you manage your finances, delivering cutting-edge solutions with trust, transparency, and innovation at the core.",
     members: [
       {
-        img: "path/to/image1.jpg",
-        name: "John Doe",
+        img: "/team/wale-ceo.png",
+        name: "Adeola Olukoya",
         role: "Founder & CEO",
         socials: {
           twitter: "https://twitter.com/johndoe",
@@ -187,9 +189,9 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "path/to/image2.jpg",
-        name: "Jane Smith",
-        role: "Chief Technology Officer",
+        img: "/team/tolu-cto.png",
+        name: "Toluwani Adepoju",
+        role: "Founder & COO",
         socials: {
           twitter: "https://twitter.com/janesmith",
           linkedin: "https://linkedin.com/in/janesmith",
@@ -197,18 +199,37 @@ export const companyData: SafulPayData = {
         },
       },
       {
-        img: "path/to/image3.jpg",
-        name: "Emily Johnson",
-        role: "Head of UI/UX Design",
+        img: "/team/oyinn-tech.png",
+        name: "Oyinlola Lawal",
+        role: "Lead Software Engineer",
+        socials: {
+          twitter: "https://twitter.com/janesmith",
+          github: "https://github.com/michaelbrown",
+          linkedin: "https://linkedin.com/in/michaelbrown",
+        },
+      },
+      {
+        img: "/team/adama-pro.png",
+        name: "Adama Jalloh",
+        role: "Customer Relations",
         socials: {
           twitter: "https://twitter.com/emilyjohnson",
           linkedin: "https://linkedin.com/in/emilyjohnson",
         },
       },
       {
-        img: "path/to/image4.jpg",
-        name: "Michael Brown",
-        role: "Lead Software Engineer",
+        img: "/team/.png",
+        name: "Elijah",
+        role: "Marketing Lead",
+        socials: {
+          twitter: "https://twitter.com/emilyjohnson",
+          linkedin: "https://linkedin.com/in/emilyjohnson",
+        },
+      },
+      {
+        img: "/team/timi-design.png",
+        name: "Oluwatimileyin Bamise",
+        role: "Product Design Engineer",
         socials: {
           github: "https://github.com/michaelbrown",
           linkedin: "https://linkedin.com/in/michaelbrown",

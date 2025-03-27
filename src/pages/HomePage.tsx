@@ -7,35 +7,27 @@ import Works from "../sections/Works";
 import Testimonial from "../sections/Testimonial";
 import Download from "../sections/Download";
 import Faqs from "../sections/Faqs";
-// import Partners from "../components/Partners";
-import ContactUs from "../sections/ContactUs";
-import Footer2 from "../sections/Footer2";
-import bgIcon from "../assets/bg-logo-illustration.svg";
+import Partners from "../components/Partners";
+import MainFooter from "../sections/MainFooter";
 
 function HomePage() {
   return (
     <>
       <NavBar />
       <Hero />
-      {/* <Partners /> */}
-      <main>
+      <main className="relative mt-[-34rem] rounded-t-[40px]">
         <Features />
         <MoreFeatures />
         <Security />
         <Works />
         <Testimonial />
+        <div className="absolute top-[29%] flex gap-2.5 whitespace-nowrap bg-primary-color rotate-[-8.29deg] w-max z-9 max-md:hidden">
+          <Partners />
+        </div>
         <Download />
         <Faqs />
       </main>
-      <div className="bg-white relative flex flex-col items-center overflow-x-clip">
-        <ContactUs />
-        <img
-          className="max-w-147.5 absolute right-[-14%] top-[-9%] max-md:max-w-120 max-sm:max-w-100 opacity-80"
-          src={bgIcon}
-          alt=""
-        />
-        <Footer2 />
-      </div>
+      <MainFooter />
     </>
   );
 }

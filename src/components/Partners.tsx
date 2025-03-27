@@ -1,21 +1,42 @@
 import { companyData } from "../data/companyData";
+import PartnerItem from "./PartnerItem";
 
 function Partners() {
   const { partners } = companyData;
 
   return (
-    <div>
-      <aside
-        className="p-2.5 z-5 flex mx-auto gap-2.5 absolute rotate-[-8.29deg] bg-primary-color w-full
-       text-white overflow-hidden"
-      >
-        {partners.map((partner) => (
-          <div className="flex p-2.5 gap-2.5 items-center">
-            <img src={partner?.image} alt="" className="rotate-[8.29deg]" />
-            <span className="title-text"> {partner?.name}</span>
-          </div>
-        ))}
-      </aside>
+    <div className="flex items-center gap-2.5 bg-primary-color animate-scroll">
+      {/* Original set */}
+      {partners.map((partner, index) => (
+        <PartnerItem key={index} name={partner.name} image={partner.image} />
+      ))}
+
+      {/* Duplicate set */}
+      {partners.map((partner, index) => (
+        <PartnerItem
+          key={`duplicate-${index}`}
+          name={partner.name}
+          image={partner.image}
+        />
+      ))}
+
+      {/* Duplicate set 2 */}
+      {partners.map((partner, index) => (
+        <PartnerItem
+          key={`duplicate-${index}-2`}
+          name={partner.name}
+          image={partner.image}
+        />
+      ))}
+
+      {/* Duplicate set 3 */}
+      {partners.map((partner, index) => (
+        <PartnerItem
+          key={`duplicate-${index}-3`}
+          name={partner.name}
+          image={partner.image}
+        />
+      ))}
     </div>
   );
 }
